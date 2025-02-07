@@ -1,15 +1,16 @@
 package main
 
 import (
-	"fmt"
-	"io/ioutil"
+	"os"
 )
 
 func main() {
-	bs, err := ioutil.ReadFile("test.txt")
+	file, err := os.Create("test2.txt")
 	if err != nil {
+		// handle the error here
 		return
 	}
-	str := string(bs)
-	fmt.Println(str)
+	defer file.Close()
+
+	file.WriteString("test")
 }
